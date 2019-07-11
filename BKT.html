@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <link rel="stylesheet" type="text/css" href="style.css">
+   </head>
+   <body>
+      <!-- pop-up for mastery -->
+      <div id="myModal" class="modal">
+         <div class="modal-content">
+            <span class="close">&times;</span>
+            <p>Mastery achieved!</p>
+         </div>
+      </div>
+
+      <div class="left" id="left">
+         <!-- title & description -->
+         <div class="header">
+            <h1>BKT Probability Simulator</h1>
+            <h3 style="font-style:italic;">By Catherine Yeh</h3>
+            <h4>
+               Drag the sliders to adjust the probabilities.
+               Explore on your own or follow the suggested prompts.
+               Hover over a parameter to see its description.
+               Update <b>P(init)</b> automatically by pressing the corresponding "Update" button below.
+               To reset the sliders, hit the "Reset" button.
+            </h4>
+         </div>
+
+         <!-- buttons -->
+         <input type="button" class="update" id="res" value="Reset" onclick="reset()" style="right:0px" />
+         <input type="button" class="button" id="button" value="Show Prompts" onclick="toggle()" />
+
+         <!-- sliders -->
+         <div class="slidecontainer">
+            <!-- init -->
+            <div class="des" onmouseenter="displayInfo(iDes)" onmouseleave="hideInfo(iDes)">
+               <div class="info" id="iDes">
+                  The probability that the student already knows a skill.
+               </div>
+               <h3>P(init): <span id="demoI"></span></h3>
+            </div>
+            <input type="range" min="0.0" max="1.0" value="0.5" step="0.01" class="slider"
+                   style="background-image: linear-gradient(to right, #f0c297, #fccfcf)" id="init" oninput="updateI(this.value)" />
+
+            <!-- trans -->
+            <div class="des" onmouseenter="displayInfo(tDes)" onmouseleave="hideInfo(tDes)">
+               <div class="info" id="tDes">
+                  The probability that the student will learn a skill on the next practice opportunity.
+               </div>
+               <h3>P(trans): <span id="demoT"></span></h3>
+            </div>
+            <input type="range" min="0.0" max="1.0" value="0.5" step="0.01" class="slider"
+                   style="background-image: linear-gradient(to right, #f2b3c3, #e0d1e8)" id="trans" oninput="updateT(this.value)" />
+
+            <!-- slip -->
+            <div class="des" onmouseenter="displayInfo(sDes)" onmouseleave="hideInfo(sDes)">
+               <div class="info" id="sDes">
+                  The probability that the student will answer incorrectly despite knowing a skill.
+               </div>
+               <h3>P(slip): <span id="demoS"></span></h3>
+            </div>
+            <input type="range" min="0.0" max="1.0" value="0.5" step="0.01" class="slider"
+                   style="background-image: linear-gradient(to right, #d3cef2, #c2dff0)" id="slip" oninput="updateS(this.value)" />
+
+            <!-- guess -->
+            <div class="des" onmouseenter="displayInfo(gDes)" onmouseleave="hideInfo(gDes)">
+               <div class="info" id="gDes">
+                  The probability that the student will answer correctly despite not knowing a skill.
+               </div>
+               <h3>P(guess): <span id="demoG"></span></h3>
+            </div>
+            <input type="range" min="0.0" max="1.0" value="0.5" step="0.01" class="slider" id="guess" oninput="updateG(this.value)"
+                   style="margin-bottom:30px;" />
+
+            <!-- probabilities -->
+            <!-- P(learned if correct) -->
+            <div class="des" onmouseenter="displayInfo(cDes)" onmouseleave="hideInfo(cDes)" style="width:280px">
+               <div class="info" style="padding-left:300px" id="cDes">
+                  The new value of P(init) if the student answers correctly.
+               </div>
+               <h2>P(learned if correct): <span id="correct"></span></h2>
+            </div>
+            <input type="button" class="update" style="position:relative;margin-top:0;margin-left:0"
+                   id="learned1" value="Update" onclick="changeP(correct, init)" />
+
+            <!-- P(learned if wrong) -->
+            <div class="des" onmouseenter="displayInfo(wDes)" onmouseleave="hideInfo(wDes)" style="width:280px">
+               <div class="info" style="padding-left:300px" id="wDes">
+                  The new value of P(init) if the student answers incorrectly.
+               </div>
+               <h2>P(learned if wrong): <span id="wrong"></span></h2>
+            </div>
+            <input type="button" class="update" style="position:relative;margin-top:0;margin-left:0"
+                   id="learned2" value="Update" onclick="changeP(wrong, init)" />
+
+            <!-- P(correct) -->
+            <div class="des" onmouseenter="displayInfo(lDes)" onmouseleave="hideInfo(lDes)" style="width:170px">
+               <div class="info" style="padding-left:200px" id="lDes">
+                  The probability that the student will answer correctly.
+               </div>
+               <h2>P(correct): <span id="likelihood"></span></h2>
+            </div>
+         </div>
+      </div>
+
+      <!-- prompts -->
+      <div class="right" id="right">
+         <h2>Prompts for Exploration:</h2>
+         <ol>
+            <li>Find a parameter combination that increases <b>P(learned)</b>.</li>
+            <li>Find two different combinations that result in mastery (aka. <b>P(learned if correct)</b> ≥ 0.95).</li>
+               <input type="button" class="more" value="More" onclick="showMore(this, more1)" />
+               <ul class="extra" id="more1">
+                  <li>
+                     Explore what adjustments you have to make depending on <b>P(init)</b>.
+                     Try a higher <b>P(init)</b> and a lower <b>P(init)</b> and compare your results.
+                  </li>
+                  <li>What does this tell you about BKT?</li>
+               </ul>
+            <li>
+               What happens to <b>P(learned)</b> if <b>P(guess)</b> and <b>P(slip)</b>
+               stay at 0.5 and you only adjust <b>P(init)</b> and <b>P(trans)</b>?
+            </li>
+               <input type="button" class="more second" value="More" onclick="showMore(this, more2)" />
+               <ul class="extra" id="more2">
+                  <li>
+                     The <b>P(learned)</b> formula differs depending on whether the student answers the question correctly.
+                     However, both formulas result in the same probability if both <b>P(guess)</b> and <b>P(slip)</b> = 0.5.
+                  </li>
+               </ul>
+            <li>What happens if <b>P(guess)</b> and/or <b>P(slip)</b> exceeds 0.5?</li>
+               <input type="button" class="more third" value="More" onclick="showMore(this, more3)" />
+               <ul class="extra" id="more3">
+                  <li><b>P(learned)</b> is higher if user answers <i>incorrectly</i> vs. <i>correctly</i>.</li>
+                  <li>Typically <b>P(guess)</b> is bounded at 0.3 and <b>P(S)</b> at 0.1 for this reason.</li>
+
+               </ul>
+            <li>
+               Can you find a parameter combination that decreases <b>P(learned if incorrect)</b>?
+               What do you think this represents in the real world?
+            </li>
+               <input type="button" class="more fourth" value="More" onclick="showMore(this, more4)" />
+               <ul class="extra" id="more4">
+                  <li>
+                     <b>P(learned)</b> decreasing with an incorrect answer might model a student “forgetting” a skill,
+                     which is totally possible in reality.
+                  </li>
+                  <li>
+                     However, BKT doesn’t account for forgetting and thus, this would actually be considered an
+                     invalid parameter combination because <b>P(learned)</b> is assumed to increase regardless of whether
+                     the user answers correctly (just by a smaller amount if incorrect).
+                  </li>
+               </ul>
+            <li>Keep exploring! Can you find any other flaws or interesting characteristics of BKT?</li>
+         </ol>
+      </div>
+
+      <!-- javascript file -->
+      <script type="text/javascript" src="BKT.js"></script>
+   </body>
+</html>
