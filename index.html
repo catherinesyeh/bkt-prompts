@@ -16,9 +16,9 @@
       <div class="left" id="left">
          <!-- title & description -->
          <div class="header">
-            <h1>BKT Probability Simulator</h1>
-            <h3 style="font-style:italic;">By Catherine Yeh</h3>
-            <h4>
+            <h1 style="margin-bottom:0">BKT Probability Simulator</h1>
+            <h3 style="margin-top:10px;font-style:italic;">By Catherine Yeh</h3>
+            <h4 style="margin-top:0">
                Drag the sliders to adjust the probabilities.
                Explore on your own or follow the suggested prompts.
                Hover over a parameter to see its description.
@@ -69,7 +69,7 @@
                <h3>P(guess): <span id="demoG"></span></h3>
             </div>
             <input type="range" min="0.0" max="1.0" value="0.5" step="0.01" class="slider" id="guess" oninput="updateG(this.value)"
-                   style="margin-bottom:20px;" />
+                   style="margin-bottom:15px;" />
 
             <!-- probabilities -->
             <h4 style="padding-bottom:0;">
@@ -77,15 +77,15 @@
                This probability becomes the new value for P(init).
                Simulate student responses by choosing an answer button below.
             </h4>
-            
+
             <!-- P(learned if correct) -->
             <div class="des" onmouseenter="displayInfo(cDes)" onmouseleave="hideInfo(cDes)" style="width:280px">
                <div class="info" style="padding-left:300px" id="cDes">
                   The new value of P(init) if the student answers correctly.
                </div>
-               <h2>P(learned if correct): <span id="correct"></span></h2>
+               <h2 style="margin-bottom:0">P(learned if correct): <span id="correct"></span></h2>
             </div>
-            <input type="button" class="update" style="position:relative;margin-top:0;margin-left:0;margin-bottom:10px"
+            <input type="button" class="button" style="position:relative;margin-top:-5px;margin-left:0;margin-bottom:25px"
                    id="learned1" value="Answer Correct" onclick="changeP(correct, init)" />
 
             <!-- P(learned if wrong) -->
@@ -93,9 +93,9 @@
                <div class="info" style="padding-left:300px" id="wDes">
                   The new value of P(init) if the student answers incorrectly.
                </div>
-               <h2>P(learned if wrong): <span id="wrong"></span></h2>
+               <h2 style="margin-bottom:0">P(learned if wrong): <span id="wrong"></span></h2>
             </div>
-            <input type="button" class="update" style="position:relative;margin-top:0;margin-left:0"
+            <input type="button" class="button" style="position:relative;margin-top:-5px;margin-left:0"
                    id="learned2" value="Answer Incorrect" onclick="changeP(wrong, init)" />
 
             <!-- P(correct) -->
