@@ -47,7 +47,7 @@ li {
 .right {
    display: none;
    height: auto;
-   width: 30%;
+   width: calc(32% - 20px);
    right: 10px;
    padding-top: 10px;
    padding-right: 10px;
