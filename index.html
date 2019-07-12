@@ -113,7 +113,10 @@
          <h2 style="text-align:center;font-size:24px">Prompts for Exploration</h2>
          <ol>
             <li>Find a parameter combination that increases <b>P(learned)</b>.</li>
-            <li>Find two different combinations that result in mastery (aka. <b>P(learned if correct)</b> ≥ 0.95).</li>
+            <li>
+               Find two different combinations that result in mastery (aka. <b>P(learned if correct)</b> ≥ 0.95).
+               Press "answer correct" to verify your results.
+            </li>
                <input type="button" class="more" value="More" onclick="showMore(this, more1)" />
                <ul class="extra" id="more1">
                   <li>
@@ -136,9 +139,10 @@
             <li>What happens if <b>P(guess)</b> and/or <b>P(slip)</b> exceeds 0.5?</li>
                <input type="button" class="more third" value="More" onclick="showMore(this, more3)" />
                <ul class="extra" id="more3">
-                  <li><b>P(learned)</b> is higher if user answers <i>incorrectly</i> vs. <i>correctly</i>.</li>
-                  <li>Typically <b>P(guess)</b> is bounded at 0.3 and <b>P(S)</b> at 0.1 for this reason.</li>
-
+                  <li>
+                     <b>P(learned)</b> is higher if user answers <i>incorrectly</i> vs. <i>correctly</i>.
+                     Typically <b>P(guess)</b> is bounded at 0.3 and <b>P(S)</b> at 0.1 for this reason.
+                  </li>
                </ul>
             <li>
                Can you find a parameter combination that decreases <b>P(learned if incorrect)</b>?
