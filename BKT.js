@@ -100,8 +100,8 @@ function updateProbs() {
    wro.innerHTML = learnW.toFixed(2);
 
    // likelihood correct
-   var likeC = i * s_c + i_c * g;
-   document.getElementById("likelihood").innerHTML = likeC.toFixed(2);
+   // var likeC = i * s_c + i_c * g;
+   // document.getElementById("likelihood").innerHTML = likeC.toFixed(2);
 
    // check if mastery achieved
    if (i >= 0.95) {
