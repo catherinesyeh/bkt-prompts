@@ -22,8 +22,6 @@
                Drag the sliders to adjust the probabilities.
                Explore on your own or follow the suggested prompts.
                Hover over a parameter to see its description.
-               Update <b>P(init)</b> automatically by pressing the corresponding "Update" button below.
-               To reset the sliders, hit the "Reset" button.
             </h4>
          </div>
 
@@ -74,6 +72,12 @@
                    style="margin-bottom:30px;" />
 
             <!-- probabilities -->
+            <h4 style="padding-bottom:0;">
+               P(learned) depends on whether the student answers correctly.
+               This probability becomes the new value for P(init).
+               Simulate student responses by choosing an answer button below.
+            </h4>
+            
             <!-- P(learned if correct) -->
             <div class="des" onmouseenter="displayInfo(cDes)" onmouseleave="hideInfo(cDes)" style="width:280px">
                <div class="info" style="padding-left:300px" id="cDes">
@@ -81,8 +85,8 @@
                </div>
                <h2>P(learned if correct): <span id="correct"></span></h2>
             </div>
-            <input type="button" class="update" style="position:relative;margin-top:0;margin-left:0"
-                   id="learned1" value="Update" onclick="changeP(correct, init)" />
+            <input type="button" class="update" style="position:relative;margin-top:0;margin-left:0;margin-bottom:10px"
+                   id="learned1" value="Answer Correct" onclick="changeP(correct, init)" />
 
             <!-- P(learned if wrong) -->
             <div class="des" onmouseenter="displayInfo(wDes)" onmouseleave="hideInfo(wDes)" style="width:280px">
@@ -92,15 +96,15 @@
                <h2>P(learned if wrong): <span id="wrong"></span></h2>
             </div>
             <input type="button" class="update" style="position:relative;margin-top:0;margin-left:0"
-                   id="learned2" value="Update" onclick="changeP(wrong, init)" />
+                   id="learned2" value="Answer Incorrect" onclick="changeP(wrong, init)" />
 
             <!-- P(correct) -->
-            <div class="des" onmouseenter="displayInfo(lDes)" onmouseleave="hideInfo(lDes)" style="width:170px">
+<!--             <div class="des" onmouseenter="displayInfo(lDes)" onmouseleave="hideInfo(lDes)" style="width:170px">
                <div class="info" style="padding-left:200px" id="lDes">
                   The probability that the student will answer correctly.
                </div>
                <h2>P(correct): <span id="likelihood"></span></h2>
-            </div>
+            </div> -->
          </div>
       </div>
 
